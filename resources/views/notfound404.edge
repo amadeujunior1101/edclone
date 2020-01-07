@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!--boostrap minificado-->
+      {{ style('css/bootstrap.min.css') }}
+      <!--styles-->
+      {{ style('css/styles.css') }}
+      <!--ajax jquery-->
+      {{ script ('js/jquery.min.js') }}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!--<script src="https://kit.fontawesome.com/417f0983a6.js"></script>-->
+
+      <title>EdClone</title>
+
+   </head>
+   <body style="background-color: #F4F3F8">
+      @include('header-auth/header-auth')   
+      <div class="container gedf-wrapper" style="padding-top: 60px">
+        <div class="card-header" style="font-size: 30px; text-align: center">
+         <p>Endereço não encontrado</p>
+        </div>
+      </div>
+      
+      <!--control modal js-->
+      {{ script ('js/control-modals.js') }}
+      <!--ajax popper js-->
+      {{ script ('js/popper.min.js') }}
+      <!--bootstrap js-->
+      {{ script ('js/bootstrap.min.js') }}
+   </body>
+</html>

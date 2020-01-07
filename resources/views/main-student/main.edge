@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!--boostrap minificado-->
+      {{ style('css/bootstrap.min.css') }}
+      <!--styles-->
+      {{ style('css/styles.css') }}
+      <!--ajax jquery-->
+      {{ script ('js/jquery.min.js') }}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!--<script src="https://kit.fontawesome.com/417f0983a6.js"></script>-->
+      <title>EdClone</title>
+   </head>
+   <body style="background-color: #F4F3F8">
+      @include('header-auth/header-auth')   
+      <div class="container gedf-wrapper" style="padding-top: 60px">
+         <div class="row">
+            <div class="col-md-3">
+               <div style="padding-bottom: 10px;">
+                  <div class="card-header" style="border-radius: 0.5rem;">
+                     <div class="d-flex align-items-center">
+                        <div class="h5 m-0">
+                           @each(u in user)
+                           <img src="{{ assetsUrl('profile-image/img/')}}{{u.path_profile_image}}"
+                              class="perfil-img-main">
+                           @endeach
+                        </div>
+                        <div class="ml-2">
+                           <span class="h6 m-0">{{ name }}</span>
+                           <div style="">
+                              <span class="m-0"><a href="{{ route('profile.show_profile', { id: profile }) }}">ver perfil</a></span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!--include classes que o aluno participa-->
+               @include('classes/classe-student-main')
+            </div>
+            <!---Form new post start-->
+            <div class="col-md-6 gedf-main">
+               <div class="card gedf-card">
+                  <div class="card-body">
+                     <form action="{{ route('new-post.store') }}" method="POST" enctype="multipart/form-data">
+                        {{ csrfField() }}
+                        <div class="form-group">
+                           <input name="post_title" style="width: 100%;" class="text-justify" id="message" rows="2"
+                              value="{{ old('post_title', '') }}" placeholder="Título do Post...">
+                        </div>
+                        @if(hasErrorFor('post_title'))
+                        <div class="alert alert-danger mb-2 mt-2">{{ getErrorFor('post_title') }}</div>
+                        @endif
+                        <div class="form-group">
+                           <textarea name="content" style="width: 100%;" class="text-justify" id="message" cols="50" rows="2"
+                              placeholder="Digite sua nota aqui...">{{ old('content', '') }}</textarea>
+                        </div>
+                        @if(hasErrorFor('content'))
+                        <div class="alert alert-danger mb-2 mt-2">{{ getErrorFor('content') }}</div>
+                        @endif
+                        <div class="form-group">
+                           <select name="cod_grupo" class="form-control" style="width: 100%;">
+                              <option disabled selected>Selecione uma classe</option>
+                              @each(c in classe)
+                              <option value="{{c.classe.id}}" {{ old('cod_grupo') == c.classe.id ? 'selected' : '' }}>{{c.classe.title}}
+                              </option>
+                              @endeach
+                           </select>
+                        </div>
+                        @if(hasErrorFor('cod_grupo'))
+                        <div class="alert alert-danger mb-2 mt-2">{{ getErrorFor('cod_grupo') }}</div>
+                        @endif
+                        @if(flashMessage('Message'))
+                        <div class="alert alert-danger mb-4">{{ flashMessage('Message') }}</div>
+                        @endif
+                        <div class="btn-toolbar justify-content-between">
+                           <div class="btn-group" style="align-items: center; justify-content: center">
+                              <ul class="navbar-nav mr-auto" style=" padding-right: 15px;" data-toggle="tooltip"
+                                 data-placement="bottom" title="Anexar Arquivo">
+                                 <li>
+                                    <div class="image-upload">
+                                       <label for="file-input" class="fa fa-archive"
+                                          style="font-size: 20px; color: #A9A9A9">
+                                       </label>
+                                       <input id="file-input" type="file" name="files" />
+                                    </div>
+                                 </li>
+                              </ul>
+                              <ul class="navbar-nav mr-auto" style="padding-right: 15px;">
+                                 <li>
+                                    <a href="">
+                                    <i class="fa fa-link" style="font-size: 20px; color: #A9A9A9"></i>
+                                    </a>
+                                 </li>
+                              </ul>
+                              <ul class="navbar-nav mr-auto" style="padding-right: 15px;">
+                                 <li>
+                                    <a href="">
+                                    <i class="fa fa-briefcase" style="font-size: 20px; color: #A9A9A9"></i>
+                                    </a>
+                                 </li>
+                              </ul>
+                           </div>
+                           <div class="btn-group" style="align-items: flex-end;">
+                              <div class="btn-group">
+                                 <button type="cancel" value="cancel" class="btn btn-link"
+                                    style="color: #000">Cancelar</button>
+                              </div>
+                              <div class="btn-group">
+                                 <label style="padding-right: 10px; color: #000"> ou</label>
+                              </div>
+                              <div class="btn-group">
+                                 <button type="submit" value="submit" class="btn btn-primary">Publicar</button>
+                              </div>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+               <!--Form new post end-->
+               <!--include Posts Aluno-->
+               @include('posts/main-student')
+            </div>
+            <div class="col-md-3">
+               <!--<div style="padding-bottom: 10px;">
+                  <div class="card-header" style="border-radius: 0.5rem;">
+                     <h5 class="card-title">Bem vindo ao EdClone</h5>
+                     <p class="card-text">Aqui estão as atualizações que estão chegando em agosto.
+                        Estamos facilitando o uso do Edmodo para acompanhar suas aulas e atividades
+                        extracurriculares.
+                     </p>
+                  </div>
+               </div>-->
+               <!--Tarefas da classe-->
+               @include('tasks/tasks-classe')
+            </div>
+         </div>
+      </div>
+      <!--form entrar na classe -->
+      @include('form-modals/entry-classe')
+      <!--control modal js-->
+      {{ script ('js/control-modals.js') }}
+      <!--ajax popper js-->
+      {{ script ('js/popper.min.js') }}
+      <!--bootstrap js-->
+      {{ script ('js/bootstrap.min.js') }}
+   </body>
+</html>

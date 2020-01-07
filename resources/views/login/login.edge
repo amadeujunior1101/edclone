@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- Bootstrap CSS -->
+   <!--https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css -->
+   <link rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous">
+   {{ style('css/bootstrap.min.css') }}
+
+   <style type="text/css">
+      .h7 {
+         font-size: 0.8rem;
+      }
+
+      @media (min-width: 992px) {
+         .gedf-main {}
+
+         .gedf-card {
+            margin-bottom: 10px;
+         }
+      }
+
+      .gedf-card {
+         margin-bottom: 10px;
+      }
+
+      /**Reset Bootstrap*/
+      .dropdown-toggle::after {
+         content: none;
+         display: none;
+      }
+   </style>
+   <title>EdClone</title>
+</head>
+
+<body style="background-color: #007bff">
+
+   @include('header-guest/header-guest')
+
+   <!-- start content -->
+   <div class="container-fluid" style="">
+      <div class="row" style="">
+         <div class="col-sm-12 col-md-12 col-lg-12"
+            style="background-color: #007bff; justify-content: center; align-items: flex-start;">
+            <div class="row"
+               style="justify-content: center; padding-top: 130px;  padding-bottom: 30px; padding-left: 10px; padding-right: 10px;">
+               <div style="              
+                    width: 500px; 
+                    background: #fff;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.6);
+                ">
+                  <div style="
+                            padding-top: 40px;
+                            display: block;
+                            font-family: 'Times New Roman', Times, serif;
+                            font-size: 30px;
+                            color: #555555;
+                            line-height: 1.2;
+                            text-align: center;
+                    ">
+                     Faça Login
+                  </div>
+                  <div class="" style="padding: 40px;">
+
+                     @if(flashMessage('successMessage'))
+                     <div class="alert alert-danger mb-4">{{ flashMessage('successMessage') }}</div>
+                     @endif
+
+                     <form action="{{ route('login.store') }}" method="POST">
+
+                        {{ csrfField() }}
+
+                        <div class="form-group">
+                           <input style="height: 68px; widows: 300px; padding: 0 25px 0 25px;" 
+                              class="form-control" name="email" name="email" aria-describedby="email" placeholder="Email"
+                              value="{{ old('email', '') }}">
+                           @if(hasErrorFor('email'))
+                           <div class="alert alert-danger mb-2 mt-2">{{ getErrorFor('email') }}</div>
+                           @endif
+
+                           <input style="height: 68px; padding: 0 25px 0 25px;" type="password" class="form-control"
+                              name="password" placeholder="Password">
+                           @if(hasErrorFor('password'))
+                           <div class="alert alert-danger mb-2 mt-2">{{ getErrorFor('password') }}</div>
+                           @endif
+
+                        </div>
+                        <button style="background-color: #ffca28; border: #ffca28" type="submit"
+                           class="btn btn-primary btn-lg btn-block">Entrar</button>
+                     </form>
+                     <div style="text-align: right; padding-top: 20px">
+                        <a href="">Ainda não tem cadastro?</a>
+                     </div>
+                  </div>
+               </div>
+               <!--border: 1px solid black;-->
+            </div>
+         </div>
+      </div>
+   </div>
+   <!--end content -->
+   <!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+   </script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+   </script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!--Modal para criar as tarefas-->
+<div class="modal fade" id="myModalDeliveryTasks" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="myModalDeliveryTasks">ENVIAR TAREFA</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <span id="msg-error"></span>
+            <form  action="{{ route('create-task.store') }}" method="POST" id="form_task">
+               <!--action="{{ route('create-task.store') }}"-->
+               {{ csrfField() }}
+               <div class="form-group">
+                  <select id="cod_grupo" name="cod_grupo" class="form-control" style="width: 100%;">
+                     <!--<option disabled selected>Selecione um grupo</option>-->
+                     @each(c in classe)
+                     <option value="{{c.id}}">{{c.title}}</option>
+                     @endeach
+                  </select>
+               </div>
+               <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Título" aria-label="Título"
+                     aria-describedby="button-addon2" name="title" id="title">
+               </div>
+               <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Descrição" aria-label="description"
+                     aria-describedby="button-addon2" name="description" id="description">
+               </div>
+               <div class="form-group">
+                  <input type="date" class="form-control" aria-label="Nome da classe"
+                     aria-describedby="button-addon2" name="delivery_date" id="delivery_date">
+                  <small id="delivery_date" class="form-text text-muted">Escolha uma data para a entrega.</small>
+               </div>
+               <div class="btn-toolbar justify-content-between">
+                  <div class="btn-group" style="align-items: center; justify-content: center">
+                     <ul class="navbar-nav mr-auto" style=" padding-right: 15px;" data-toggle="tooltip"
+                        data-placement="bottom" title="Anexar Arquivo">
+                        <li>
+                           <div class="image-upload">
+                              <label for="file-input" class="fa fa-archive" style="font-size: 20px; color: #A9A9A9">
+                              </label>
+                              <input id="file-input" type="file" name="files" multiple />
+                           </div>
+                        </li>
+                     </ul>
+                     <ul class="navbar-nav mr-auto" style="padding-right: 15px;">
+                        <li>
+                           <a href="">
+                           <i class="fa fa-link" style="font-size: 20px; color: #A9A9A9"></i>
+                           </a>
+                        </li>
+                     </ul>
+                     <ul class="navbar-nav mr-auto" style="padding-right: 15px;">
+                        <li>
+                           <a href="">
+                           <i class="fa fa-briefcase" style="font-size: 20px; color: #A9A9A9"></i>
+                           </a> 
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="btn-group" style="align-items: flex-end;">
+                     <div class="btn-group">
+                        <button type="submit" name="CadUser" id="CadUser" class="btn btn-outline-secondary"
+                           id="button-addon2">Criar</button>
+                     </div>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>

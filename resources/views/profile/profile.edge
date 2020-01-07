@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <!--https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css -->
+    <link rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    {{ style('css/bootstrap.min.css') }}
+    {{ style('css/uploadfilemulti.css') }}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<script src="https://kit.fontawesome.com/417f0983a6.js"></script>-->
+
+    <style type="text/css">
+        .h7 {
+            font-size: 0.8rem;
+        }
+
+        @media (min-width: 992px) {
+            .gedf-main {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+
+            .gedf-card {
+                margin-bottom: 10px;
+            }
+        }
+
+        .gedf-card {
+            margin-bottom: 10px;
+        }
+
+        /**Reset Bootstrap*/
+        .dropdown-toggle::after {
+            content: none;
+            display: none;
+        }
+    </style>
+    <title>EdClone | Perfil</title>
+</head>
+
+<body style="background-color: #F4F3F8">
+
+    @include('header-auth/header-auth')
+
+    <div class="container gedf-wrapper" style="padding-top: 60px;">
+        <div class="row">
+            <div class="col-md-12 gedf-main">
+                <div class="card-header" style="border: 10px">
+                    @each(u in user)
+                    <div class="row">
+                        <div class="" style="margin: 10px;">
+
+                            <form action="{{ route('profile.update_profile', { id:profile }) }}" method="Post"
+                                enctype="multipart/form-data">
+
+                                {{ csrfField() }}
+
+                                <div class="image-upload">
+                                    <label for="file-input" style="">
+                                        @each(u in user)
+                                        <img class="profile-card-avatar" alt=""
+                                            src="{{ assetsUrl('profile-image/img/')}}{{u.path_profile_image}}"
+                                            class="avatar"
+                                            style="width: 140px; height:140px; vertical-align: middle; border-radius: 5%">
+                                        @endeach
+                                    </label>
+                                    @if(auth == true)
+                                    <input id="file-input" type="file" name="files" multiple />
+                                    @endif
+                                </div>
+
+                                @if(auth == true)
+                                <div class="d-flex align-items-center" style="width: 100%; padding-top: 5px;">
+                                    <span style="width: 100%; text-align: center">
+                                        <div class="btn-group">
+                                            <button type="submit" value="submit" class="btn btn-primary">
+                                                <span>Atualizar Foto</span>
+                                            </button>
+
+                                            <script>
+                                                window.onload = function(){
+                                                    document.querySelector('#posts').classList.add("active")
+                                                }                     
+                                            </script>
+
+                                        </div>
+
+                                    </span>
+                                </div>
+                                @endif
+                            </form>
+
+                        </div>
+
+                        <div class="" style="margin: 10px">
+
+                            <div class="h5 m-0">
+                                <label>{{u.name}}</label>
+                            </div>
+                            <p class="">
+                                <span>{{u.type_users.name}}</span>
+                            </p>
+                            <p class="">
+                                <span>IFTO</span>
+                            </p>
+                            <div class="">
+                                <a class="">
+                                    <div class="">2</div>
+                                    <div class=""><span>Grupos</span></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @endeach
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+         $("#myBtnClasses").click(function(){ 
+            $("#myModalClasses").modal();
+         });
+      });
+
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

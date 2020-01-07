@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!--boostrap minificado-->
+   {{ style('css/bootstrap.min.css') }}
+   <!--styles-->
+   {{ style('css/styles.css') }}
+   <!--ajax jquery-->
+   {{ script ('js/jquery.min.js') }}
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <!--<script src="https://kit.fontawesome.com/417f0983a6.js"></script>-->
+   <title>EdClone</title>
+</head>
+
+<body style="background-color: #F4F3F8">
+   @include('header-auth/header-auth')
+   <div class="container gedf-wrapper" style="padding-top: 60px">
+      <div class="card-header">
+         <label>CRIAR NOVA TAREFA</label>
+
+         <form action="{{route('create-task.store')}}" method="POST" enctype="multipart/form-data">
+            {{ csrfField() }}
+
+            @if(hasErrorFor('cod_grupo'))
+            <div class="alert alert-danger mb-2 mt-2">{{ getErrorFor('cod_grupo') }}</div>
+            @endif
+
+            <div class="form-group">
+               <select id="cod_grupo" name="cod_grupo" class="form-control" style="width: 100%;">
+                  <!--<option disabled selected>Selecione um grupo</option>-->
+                  @each(c in classe)
+                  <option value="{{c.id}}">{{c.title}}</option>
+                  @endeach
+               </select>
+            </div>
+
+            @if(hasErrorFor('task_title'))
+            <div class="alert alert-danger mb-2 mt-2">{{ getErrorFor('task_title') }}</div>
+            @endif
+
+            <div class="form-group">
+               <input type="text" class="form-control" placeholder="Título" aria-label="Título"
+                  aria-describedby="button-addon2" name="task_title" id="title" value="{{ old('task_title', '') }}">
+            </div>
+
+            @if(hasErrorFor('task_description'))
+            <div class="alert alert-danger mb-2 mt-2">{{ getErrorFor('task_description') }}</div>
+            @endif
+
+            <div class="form-group">
+               <input type="text" class="form-control" placeholder="Descrição" aria-label="description"
+                  aria-describedby="button-addon2" name="task_description" id="description"
+                  value="{{ old('task_description', '') }}">
+            </div>
+
+            @if(flashMessage('MessageDate'))
+            <div class="alert alert-danger mb-4">{{ flashMessage('MessageDate') }}</div>
+            @endif
+
+            <div class="form-group">
+               <input type="date" class="form-control" aria-label="Nome da classe" aria-describedby="button-addon2"
+                  name="task_delivery_date" id="delivery_date" value="{{ old('delivery_date', '') }}">
+               <small id="delivery_date" class="form-text text-muted">Escolha uma data para a entrega.</small>
+            </div>
+
+            @if(flashMessage('Message'))
+            <div class="alert alert-danger mb-4">{{ flashMessage('Message') }}</div>
+            @endif
+
+            <div class="btn-toolbar justify-content-between">
+               <div class="btn-group" style="align-items: center; justify-content: center">
+                  <ul class="navbar-nav mr-auto" style=" padding-right: 15px;" data-toggle="tooltip"
+                     data-placement="bottom" title="Anexar Arquivo">
+                     <li>
+                        <div class="image-upload">
+                           <label for="file-input" class="fa fa-archive" style="font-size: 20px; color: #A9A9A9">
+                           </label>
+                           <input id="file-input" type="file" name="files" multiple />
+                        </div>
+                     </li>
+                  </ul>
+                  <ul class="navbar-nav mr-auto" style="padding-right: 15px;">
+                     <li>
+                        <a href="">
+                           <i class="fa fa-link" style="font-size: 20px; color: #A9A9A9"></i>
+                        </a>
+                     </li>
+                  </ul>
+                  <ul class="navbar-nav mr-auto" style="padding-right: 15px;">
+                     <li>
+                        <a href="">
+                           <i class="fa fa-briefcase" style="font-size: 20px; color: #A9A9A9"></i>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+
+
+
+               <div class="btn-group" style="align-items: flex-end;">
+                  <div class="btn-group">
+                     <button type="submit" class="btn btn-outline-secondary">Criar</button>
+                  </div>
+               </div>
+            </div>
+         </form>
+
+      </div>
+   </div>
+
+   <!--bootstrap js-->
+   {{ script ('js/bootstrap.min.js') }}
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!--boostrap minificado-->
+      {{ style('css/bootstrap.min.css') }}
+      <!--styles-->
+      {{ style('css/styles.css') }}
+      <!--ajax jquery-->
+      {{ script ('js/jquery.min.js') }}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!--<script src="https://kit.fontawesome.com/417f0983a6.js"></script>-->
+      <title>EdClone</title>
+   </head>
+   <body style="background-color: #F4F3F8">
+      @include('header-auth/header-auth')   
+      <div class="container gedf-wrapper" style="padding-top: 60px">
+         <div class="card-header">
+                <label>ENVIO DA TAREFA</label>  
+            @each(dados in info)  
+            <form action="{{ route('create-task-delivery.store') }}" method="POST" enctype="multipart/form-data" class="form">
+               {{ csrfField() }}
+               <div class="form-group">
+                  <input type="text" class="form-control" id="{{dados.tasks_id}}" value="{{dados.title}}" disabled>
+                  <input type="text" class="form-control" value="{{dados.tasks_id}}}" name="cod_task" hidden="true">
+                  <input type="text" class="form-control" value="{{dados.classes_id}}}" name="cod_grupo" hidden="true">
+               </div>
+               <div class="form-group">
+                  <input type="text" class="form-control" id="exampleInputEmail1" value="{{dados.tasks_title}}" disabled>
+               </div>
+               <div class="form-group">
+                  <input type="date" class="form-control" id="exampleInputEmail1" value="{{dados.date.toISOString().substr(0, 10)}}">
+               </div>
+               <div class="form-group">
+                  <textarea class="form-control" rows="3" name="content">
+                  </textarea>
+               </div>
+               <div class="form-group">
+                  
+
+
+                  <div class="btn-toolbar justify-content-between">
+                     <div class="btn-group" style="align-items: center; justify-content: center">
+                        <ul class="navbar-nav mr-auto" style=" padding-right: 15px;" data-toggle="tooltip"
+                           data-placement="bottom" title="Anexar Arquivo">
+                           <li>
+                              <div class="image-upload">
+                                 <label for="file-input" class="fa fa-archive"
+                                    style="font-size: 20px; color: #A9A9A9">
+                                 </label>
+                                 <input id="file-input" type="file" name="files" />
+                              </div>
+                           </li>
+                        </ul>
+                        <ul class="navbar-nav mr-auto" style="padding-right: 15px;">
+                           <li>
+                              <a href="">
+                              <i class="fa fa-link" style="font-size: 20px; color: #A9A9A9"></i>
+                              </a>
+                           </li>
+                        </ul>
+                        <ul class="navbar-nav mr-auto" style="padding-right: 15px;">
+                           <li>
+                              <a href="">
+                              <i class="fa fa-briefcase" style="font-size: 20px; color: #A9A9A9"></i>
+                              </a>
+                           </li>
+                        </ul>
+                     </div>                   
+                  </div>
+
+                  @if(flashMessage('Message'))
+                  <div class="alert alert-danger mb-4">{{ flashMessage('Message') }}</div>
+                  @endif
+
+               </div>
+               <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+            @endeach
+         </div>
+      </div>
+
+      <!--bootstrap js-->
+      {{ script ('js/bootstrap.min.js') }}
+   </body>
+</html>

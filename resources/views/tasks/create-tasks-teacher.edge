@@ -1,0 +1,57 @@
+<div style="padding-bottom: 10px;">
+        <div class="card-header" style="border-radius: 0.5rem;">
+           <div class="d-flex justify-content-between align-items-center">
+              <div class="h5 m-0 my-classe-top">CRIAR TAREFA
+              </div>
+              <div>
+                 <div class="dropdown"> 
+                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-plus"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                       <a class="dropdown-item" href="{{'new-task'}}">Nova tarefa</a> <!--data-toggle="modal" id="myBtnTasks"-->
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+        
+        @each(c in tasks) 
+    
+        <div >
+           @if(c.tasks != "")
+        
+           <a class="teste" href="{{ route('search-task.show', { id: c.tasks_id }) }}" style="text-decoration:none;"> <!--data-toggle="modal" id="myBtnDeliveryTasks{{ c.tasks_id }}"-->
+
+           <div class="card-header" style="border-radius: 0.5rem;">
+                     
+                 <div class="d-flex align-items-center">
+   
+                    <div class="h5 m-0">
+        
+                       <img src="{{ assetsUrl('imgs/img_activity.png')}}" class="classe-tasks-img">
+        
+                    </div>
+                    <div class="ml-2">
+                       <span class="h6 m-0"
+                          style="font-size: 14px; font-family: Arial, Helvetica, sans-serif">{{ c.tasks_title }}</span>
+                    </div>
+                 </div>
+   
+                 <span style="font-size: 14px; font-family: Arial, Helvetica, sans-serif">{{c.title}}</span><br />
+                 <span style="color: blue; font-size: 12px">{{c.tasks_date.toISOString().substr(0, 10).split('-').reverse().join('/') }}</span><br />
+   
+           </div>
+
+        </a>
+        
+           @endif
+        </div>
+       @endeach
+
+</div> 
+
+
+
+

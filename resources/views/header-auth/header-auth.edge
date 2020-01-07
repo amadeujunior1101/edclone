@@ -1,0 +1,81 @@
+<header>
+   <nav class="navbar navbar-expand-md navbar-dark fixed-top " style="background-color: #FFF; 
+           box-shadow: 0 2px 0 rgba(68,68,68,0.2); padding: 4px;">
+      <div class="container">
+         <a class="navbar-brand" href="{{ route('/') }}">EdClone</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto" style="">
+               <li>
+                  <a href="{{ route('/') }}" style="align-items: center; justify-content: center;">
+                     <i class="fa fa-home" style="font-size: 22px; padding-right: 10px;">
+                        <span style="font-size: 12px; font-weight: 500;">Início</span>
+                     </i>
+                  </a>
+                  <a href="" style="align-items: center; justify-content: center;">
+                     <i class="fa fa-users" style="font-size: 16px; padding-right: 10px;">
+                        <span style="font-size: 12px; font-weight: 500;">Classes</span>
+                     </i>
+                  </a>
+                  <a href="" style="align-items: center; justify-content: center;">
+                     <i class="fa fa-envelope" style="font-size: 18px; padding-right: 10px;">
+                        <span style="font-size: 12px; font-weight: 500;">Mensagens</span>
+                     </i>
+                  </a>
+               </li>
+
+               <!--<li><a href="">
+                     <img src="{{ assetsUrl('imgs/img_conf.png') }}" alt="Avatar" class="avatar" style=" vertical-align: middle;
+                          width: 20px;
+                          height: 20px;
+                          border-radius: 50%;">
+                  </a>
+               </li>-->
+
+            </ul>
+            <form class="form-inline mt-2 mt-md-0">
+
+               <div id="input-group" style="background-color: #f4f3f8; height: 40px;">
+                  <input id="input" type="text" class="" placeholder="Pesquisar" />
+                  <span>
+                     <i class="fa fa-search"></i>
+                  </span>
+               </div>
+
+               <!--  <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                  <i class="fa fa-search" style="background-color: transparent; border: none;"></i>
+               </button>-->
+
+            </form>
+            <div class="btn-group">
+               <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <a href="">
+                     @each(navBar in userNavBar)
+                     <img src="{{ assetsUrl('profile-image/img/')}}{{navBar.path_profile_image}}" alt="Avatar" class="avatar"
+                        style=" vertical-align: middle;
+                                        width: 30px;
+                                        height: 30px;
+                                        border-radius: 50%;">
+                     @endeach
+                  </a>
+               </button>
+               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                  <a class="dropdown-item" href=" "><i class="fa fa-user"></i> Perfil</a>
+                  <a class="dropdown-item" href="#"><i class="fa fa-cogs"></i> Configuraões</a>
+                  <a class="dropdown-item" href="{{ route('logout') }}"><i class="fa fa-power-off"></i> Sair</a>
+                  <!--<form action="{{ route('logout') }}" method="POST">
+                     {{ csrfField() }}
+
+                     <a class="dropdown-item" type="button"><i class="fa fa-user"></i> Sair</a>
+                     <button class="btn btn-primary">Sair</button>
+                  </form>-->
+               </div>
+            </div>
+         </div>
+      </div>
+   </nav>
+</header>

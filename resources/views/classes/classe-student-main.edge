@@ -1,0 +1,42 @@
+<div style="padding-bottom: 10px;">
+      <div class="card-header" style="border-radius: 0.5rem;">
+         <div style="border-radius: 0.5rem;">
+            <div class="d-flex justify-content-between align-items-center">
+                  <div class="h5 m-0 my-classe-top">Minhas Classes</div>
+                  <div class="dropdown">
+                        <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <i class="fa fa-ellipsis-h"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1" style="margin: 0">
+                           <a class="dropdown-item" data-toggle="modal" data-target="#addClasse" href="">Entrar em uma turma   
+                           </a>
+                        </div>
+                  </div>
+            </div>
+            @if(flashMessage('successMessage'))
+            <div class="alert alert-danger ">{{ flashMessage('successMessage') }}</div>
+            @endif
+            <!--{{ elIf('<span>$self</span>', getErrorFor('codigo_turma'), hasErrorFor('codigo_turma')) }}-->
+
+            <div class="card-body" style="padding: 0; margin-top: 10px;">
+               <ul class="list-group list-group-flush scrollable" style="overflow-y: auto; max-height: 500px;">
+                  @each(c in classe)
+                  <li class=" ">
+                     
+                     <a href="{{ route('classe-posts', { id: c.classe.id }) }}"
+                        class="list-group-item list-group-item-action" style="padding-top: 0px">
+                     <span class="my-classe-markers" id="{{c.classe.id}}">
+                     </span>
+                     <span >
+                     {{c.classe.title}}
+                     </span>
+                     </a>
+                  </li>
+                  @endeach
+               </ul>
+            </div>
+
+         </div>
+      </div>
+</div>

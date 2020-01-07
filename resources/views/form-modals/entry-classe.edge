@@ -1,0 +1,27 @@
+<!-- Entrar numa classe -->
+<div class="modal fade" id="addClasse" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+          div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Entrar numa classe</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="input-group mb-3" style="justify-content: center;">
+                <form action="{{ route('entry-classe.store') }}" method="POST"
+                  class="d-flex justify-content-between align-items-center">
+                  {{ csrfField() }}
+                  <input type="text" class="form-control" id="codigo_turma" name="codigo_turma" placeholder="Digite o codigo da turma">
+                  <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary" id="button-addon2">Entrar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
