@@ -1,8 +1,8 @@
-FROM mysql:5.7
+FROM mysql:oracle
 
-ENV MYSQL_ROOT_PASSWORD edclone  
-ENV MYSQL_DATABASE edclone  
-ENV MYSQL_USER edclone  
+ENV MYSQL_ROOT_PASSWORD edclone
+ENV MYSQL_DATABASE edclone
+ENV MYSQL_USER edclone
 ENV MYSQL_PASSWORD edclone
 
 EXPOSE 3306
